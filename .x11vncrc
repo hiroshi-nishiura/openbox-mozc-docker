@@ -1,0 +1,16 @@
+#nopw
+nonc
+shared
+noxrecord
+noxdamage
+noxfixes
+norc
+nowf
+nowcr
+no6
+xkb
+repeat
+scr_keyrepeat 4-6
+forever
+#bg
+o x11vnc.log
