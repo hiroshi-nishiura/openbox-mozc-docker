@@ -1,2 +1,2 @@
-Emacs*useXIM: false
-Emacs.24*useXIM: false
+Emacs.UseXIM: false
+Emacs24.UseXIM: false

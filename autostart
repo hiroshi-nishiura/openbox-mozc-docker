@@ -1,2 +1,4 @@
+xset -b
+xrdb .Xresources
 tint2 &
 fcitx &

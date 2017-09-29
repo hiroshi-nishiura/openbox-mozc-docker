@@ -3,10 +3,13 @@ MAINTAINER nishiura.hiroshi@gmail.com
 
 # Desktop
 RUN apt-get update
-RUN apt-get install -y openbox obmenu obconf tint2 xfce4-terminal x11vnc xvfb
+RUN apt-get install -y openbox obmenu obconf tint2 xfce4-terminal x11vnc xvfb x11-xserver-utils
 
-# Applications
-RUN apt-get install -y net-tools firefox emacs git wget curl
+# Tools
+RUN apt-get install -y net-tools firefox emacs git wget curl htop scrot
+
+# Runtime
+RUN apt-get install -y python-numpy
 
 # Japanese environment
 RUN apt-get install -y language-pack-ja-base language-pack-ja fonts-takao fcitx-mozc
@@ -14,7 +17,6 @@ RUN apt install -y emacs-mozc fonts-inconsolata
 ENV LANG ja_JP.UTF-8
 RUN locale-gen en_US.UTF-8
 RUN locale-gen ja_JP.UTF-8
-#RUN update-locale LANG=ja_JP.UTF-8
 
 # TimeZone
 RUN echo "tzdata tzdata/Areas select Asia" > /tmp/tzdata
@@ -31,19 +33,27 @@ RUN useradd -G sudo -m -s /bin/bash ubuntu && echo 'ubuntu:ubuntu' | chpasswd
 WORKDIR /home/ubuntu
 RUN mkdir -p .config/openbox
 ADD autostart .config/openbox/autostart
-ADD lubuntu-rc.xml .config/openbox/lubuntu-rc.xml
+ADD rc.xml .config/openbox/rc.xml
+
+# noVNC
+RUN git clone https://github.com/novnc/noVNC.git
+RUN git clone https://github.com/novnc/websockify noVNC/utils/websockify
+RUN openssl req -new -x509 -days 3650 -nodes -out noVNC/self.pem -keyout noVNC/self.pem -subj "/"
 
 # Emacs
 ADD .emacs .emacs
-RUN mkdir .emacs.d
+#RUN mkdir .emacs.d
 #ADD setup.el .emacs.d/setup.el
 #RUN su - ubuntu -c 'emacs --script .emacs.d/setup.el'
 
 # Startup
+ADD startup.sh startup.sh
 ADD .Xresources .Xresources
 ADD .x11vncrc .x11vncrc
-ADD start.sh start.sh
 RUN chown -R ubuntu.ubuntu * .*
 
 USER ubuntu
-CMD ./start.sh
+ENTRYPOINT ["bash","./startup.sh"]
+
+# default argument for startup
+#CMD ["xvnc"]

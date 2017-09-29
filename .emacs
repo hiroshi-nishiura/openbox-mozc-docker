@@ -9,8 +9,8 @@
 (setq fcitx-aggressive-setup)
 (setq fcitx-use-dbus t)
 
-;; window ;;
-;(when window-system (set-frame-size (selected-frame) 110 50))
+;; key bind
+(global-set-key (kbd "C-c g") 'goto-line)
 
 ;; basic settings ;;
 (show-paren-mode 1)
@@ -21,3 +21,8 @@
 ;; fonts
 (set-face-attribute 'default nil :family "Inconsolata" :height 120)
 (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Takaoゴシック"))
+
+;;
+(custom-set-variables
+ '(inhibit-startup-screen t)
+ )

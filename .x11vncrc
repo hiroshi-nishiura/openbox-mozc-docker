@@ -12,5 +12,4 @@ xkb
 repeat
 scr_keyrepeat 4-6
 forever
-#bg
 o x11vnc.log
