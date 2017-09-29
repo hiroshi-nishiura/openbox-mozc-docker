@@ -28,7 +28,7 @@ mozc_serverがrootユーザでは起動しないためです。
 * .emacsファイル参照
 
 #### VNC
-* x11vncとnoVNCの両方に対応しています。docker run起動時に選択可能です。
+* x11vncとnoVNCの両方に対応しています。docker run起動時に選択可能です。noVNCではSSLオンリーとなっています。
 * vncパスワード：ubuntu （自分のPWに変更してください）
 
 #### 使い方
