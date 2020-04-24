@@ -3,10 +3,10 @@ Simple日本語デスクトップ Dockerファイル
 
 openboxで日本語を表示するだけではなく日本語入力もちゃんとできる環境を構築するのは
 結構面倒な作業です。特にDocker環境で使えるものとなるとなかなか大変だと思います。
-このDockerファイルは、日本語入力も出来る最低限のデスクトップ環境を構築します。
+このDockerファイルは、日本語入力も出来る最低限のデスクトップ環境を構築し、VNC出来ます。
 
 #### 基本構成
-* Base： ubuntu 16.04
+* Base： ubuntu 18.04
 * Display： Xvfb
 * Desktop： openbox
 * Input Method： fcitx-mozc
@@ -28,7 +28,7 @@ mozc_serverがrootユーザでは起動しないためです。
 * .emacsファイル参照
 
 #### VNC
-* x11vncとnoVNCの両方に対応しています。docker run起動時に選択可能です。noVNCではSSLオンリーとなっています。
+* x11vncを使っています。
 * vncパスワード：ubuntu （自分のPWに変更してください）
 
 #### 使い方
@@ -48,12 +48,5 @@ $ docker run --rm -it -p 5901:5901 openbox-mozc-docker
 $ docker run --rm -it -p 5901:5900 openbox-mozc-docker xvnc
 ```
 VNCクライアントから host-ip-addr:5901 にアクセス
-
-**起動 noVNCの場合**
-```
-$ docker run --rm -it -p 5901:5901 openbox-mozc-docker novnc
-```
-Browserから https://(host-ip):5901/vnc.html にアクセス
-* noVNCの場合コンテナ側のポートが5901になる点に注意してください。
 
 その他細かいことはファイルを覗いてください。

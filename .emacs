@@ -6,8 +6,6 @@
 
 (require 'mozc)
 (setq default-input-method "japanese-mozc")
-(setq fcitx-aggressive-setup)
-(setq fcitx-use-dbus t)
 
 ;; key bind
 (global-set-key (kbd "C-c g") 'goto-line)
